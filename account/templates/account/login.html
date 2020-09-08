@@ -9,13 +9,10 @@ Login
 {% block content %}
 <h2>Please Use the form below to login:</h2>
 
-{% if message %}
 {{ message }}
-{% else %}
 <form action="" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Log in">
 </form>
-{% endif %}
 {% endblock content%}

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # this app must come before admin app to use this app's template first
     'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -123,3 +124,9 @@ STATIC_URL = '/static/'
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, "account/static"),
 # )
+
+# DEFAULT URL TO USE BY AUTH VIEWS
+# @login_required will be redirected here with a next value in request
+LOGIN_URL = 'account:login'
+LOGOUT_URL = 'account:logout'
+LOGIN_REDIRECT_URL = 'account:dashboard'
