@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Profile
 
 
 class LoginForm(forms.Form):
@@ -40,3 +41,20 @@ class UserRegistrationForm(forms.ModelForm):
             raise forms.ValidationError(
                 'Password should have both letters and digits!')
         return cd['password1']
+
+
+# Form to update fields those belong to User Model
+class EditUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+
+
+# Form to update fields those belong to Profile Model
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('date_of_birth', 'photo')
+        widgets = {
+            'date_of_birth': forms.DateInput(format=('%d/%m/%Y'), attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'}),
+        }

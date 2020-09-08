@@ -133,3 +133,7 @@ LOGIN_REDIRECT_URL = 'account:dashboard'
 
 # Using Django Email Backend to write email to console
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# configuration for MEDIA files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
