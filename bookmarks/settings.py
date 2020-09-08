@@ -130,3 +130,6 @@ STATIC_URL = '/static/'
 LOGIN_URL = 'account:login'
 LOGOUT_URL = 'account:logout'
 LOGIN_REDIRECT_URL = 'account:dashboard'
+
+# Using Django Email Backend to write email to console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
