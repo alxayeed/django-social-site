@@ -14,6 +14,8 @@ Login
 {% endif %}
 
 <div class="login-form">
+    <p>Please, use the following form to log-in. If you don't have an
+        account <a href="{% url "account:register" %}">register here</a></p>
     <form action="{% url 'account:login' %}" method="POST">
         {{ form.as_p }}
         {% csrf_token %}
