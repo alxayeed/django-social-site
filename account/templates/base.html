@@ -9,11 +9,18 @@
         {% block title %}
         {% endblock %}
     </title>
+    <link rel="stylesheet" href="{% static "account/css/base.css" %}">
 </head>
 
 <body>
-    {% block content %}
-    {% endblock %}
+    <div id="header">
+        <span class="logo">Bookmarks</span>
+    </div>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
 </body>
 
 </html>
