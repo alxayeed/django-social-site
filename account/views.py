@@ -4,6 +4,7 @@ from .forms import LoginForm, UserRegistrationForm, EditUserForm, EditProfileFor
 from .models import Profile
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 @login_required
@@ -74,6 +75,13 @@ def update_profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+
+            # send an one time message to the template
+            messages.success(request, 'Profile Updated succesfully')
+            return redirect('account:dashboard')
+        else:
+            # send error message to template
+            messages.error(request, 'Opps!Something goes Wrong!')
     else:
         user_form = EditUserForm(instance=request.user)
         profile_form = EditProfileForm(instance=request.user.profile)
