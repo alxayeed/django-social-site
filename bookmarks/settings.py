@@ -25,7 +25,7 @@ SECRET_KEY = 'zipsuwk43i3n#09n$k%x-m1#1o36)6t@vjj17(pa9r%-crnd_0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['alapp.com', 'localhost', '127.0.0.1', ]
 
 
 # Application definition
@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
