@@ -137,3 +137,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # configuration for MEDIA files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+# AUTHENTICATION BACKEND
+AUTHENTICATION_BACKENDS = [
+    # Default, first check for username X password
+    'django.contrib.auth.backends.ModelBackend',
+    # if not found, check for the custom one - email X Password
+    'account.authentication.EmailAuthBackend'
+]
