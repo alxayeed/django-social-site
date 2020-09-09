@@ -1,3 +1,8 @@
 # Django #
 *.pyc
 __pycache__/
+
+# Credentials #
+cred.py
+cert.crt 
+cert.key

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from . import cred
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -141,9 +142,18 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # AUTHENTICATION BACKEND
+# use this command to run using ssl -  python manage.py runserver_plus --cert-file cert.crt
 AUTHENTICATION_BACKENDS = [
     # Default, first check for username X password
     'django.contrib.auth.backends.ModelBackend',
     # if not found, check for the custom one - email X Password
-    'account.authentication.EmailAuthBackend'
+    'account.authentication.EmailAuthBackend',
+    # authentication for Facbook OAuth
+    'social_core.backends.facebook.FacebookOAuth2',
 ]
+
+# Facebook Auth
+SOCIAL_AUTH_FACEBOOK_KEY = cred.APP_ID  # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = cred.APP_SECRET  # Facebook App Secret
+# extra permissions
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
