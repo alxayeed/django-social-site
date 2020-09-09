@@ -4,3 +4,4 @@ https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#substituting-a-cu
 
 https://docs.djangoproject.com/en/3.0/ref/contrib/messages/
 https://docs.djangoproject.com/en/3.0/topics/auth/customizing#otherauthentication-sources
+https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
