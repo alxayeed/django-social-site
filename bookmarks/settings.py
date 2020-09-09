@@ -150,10 +150,16 @@ AUTHENTICATION_BACKENDS = [
     'account.authentication.EmailAuthBackend',
     # authentication for Facbook OAuth
     'social_core.backends.facebook.FacebookOAuth2',
+    # Authentication backend for Google
+    'social_core.backends.google.GoogleOAuth2',
 ]
 
 # Facebook Auth
 SOCIAL_AUTH_FACEBOOK_KEY = cred.APP_ID  # Facebook App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = cred.APP_SECRET  # Facebook App Secret
-# extra permissions
+# extra permissions this app will ask for to facebook user
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+# Google_Auth
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = cred.CLIENT_ID  # Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = cred.CLIENT_SECRET  # Google Consumer Secret
