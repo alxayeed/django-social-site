@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls', namespace='account')),
     path('social-auth/', include('social_django.urls', namespace='social')),
+    # path('images/', include('images.urls', namespace='images')),
 ]
 # in debug mode, media files will be served using this configuration
 if settings.DEBUG:
