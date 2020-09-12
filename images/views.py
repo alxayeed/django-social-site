@@ -21,8 +21,8 @@ def create_image(request):
             # redirect to new created item detail view
             return redirect(new_item.get_absolute_url())
     else:
-        # fill the form with the GET data (url,title)
-        form = ImageCreationForm(data=request.POST)
+        # fill the form with the GET data that contains url and title
+        form = ImageCreationForm(data=request.GET)
 
     return render(request, 'images/image/create.html',
                   {'section': 'images',

@@ -8,7 +8,7 @@ from django.utils.text import slugify
 class ImageCreationForm(forms.ModelForm):
     class Meta:
         model = Image
-        fields = ('title', 'description', 'url')
+        fields = ('url', 'title', 'description')
         widgets = {
             'url': forms.HiddenInput
         }
@@ -33,7 +33,7 @@ class ImageCreationForm(forms.ModelForm):
 
         image = super().save(commit=False)
         image_url = self.cleaned_data['url']
-        name = slugify(self.title)
+        name = slugify(image.title)
         extension = image_url.rsplit('.', 1)[1].lower()
         image_name = f'{name}.{extension}'
 
