@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['alapp.com', 'localhost', '127.0.0.1', ]
 INSTALLED_APPS = [
     # this app must come before admin app to use this app's template first
     'account.apps.AccountConfig',
+    'images.app.ImagesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
