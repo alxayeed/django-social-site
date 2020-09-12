@@ -1,6 +1,6 @@
 # Django #
 *.pyc
-bookmarks/__pycache__/
+/__pycache__/
 
 
 # Credentials #
