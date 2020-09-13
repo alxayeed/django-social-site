@@ -10,4 +10,5 @@ https://python-social-auth.readthedocs.io/en/latest/backends/index.html#supporte
 13/9/2020
 ------------------
 https://api.jquery.com/category/selectors/
-https://easy-thumbnails.readthedocs.io/.
+https://easy-thumbnails.readthedocs.io/
+https://docs.djangoproject.com/en/3.0/ref/csrf/#ajax
