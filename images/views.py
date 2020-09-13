@@ -5,6 +5,7 @@ from django.contrib import messages
 from .forms import ImageCreationForm
 from .models import Image
 from django.http import JsonResponse
+from common.decorators import ajax_required
 
 
 @login_required
@@ -39,6 +40,7 @@ def image_detail(request, id, slug):
                    'image': image})
 
 
+@ajax_required
 @login_required
 # allow only POST request, returns 405(HttpResponseNotAllowed) otherwise
 @require_POST
