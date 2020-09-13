@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'django_extensions',
+    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [
@@ -140,6 +141,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # configuration for MEDIA files
 MEDIA_URL = '/media/'
+# media files will be stored here
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # AUTHENTICATION BACKEND

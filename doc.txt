@@ -6,3 +6,8 @@ https://docs.djangoproject.com/en/3.0/ref/contrib/messages/
 https://docs.djangoproject.com/en/3.0/topics/auth/customizing#otherauthentication-sources
 https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
 https://python-social-auth.readthedocs.io/en/latest/backends/index.html#supported-backends
+
+13/9/2020
+------------------
+https://api.jquery.com/category/selectors/
+https://easy-thumbnails.readthedocs.io/.
