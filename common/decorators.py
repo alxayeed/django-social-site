@@ -7,6 +7,6 @@ def ajax_required(func):
         if not request.is_aja():
             return HttpResponseBadRequest
         return func(request, *args, **kwargs)
-    wrapper.__doc__ = f.__doc__
-    wrapper.__name__ = f.__name__
+    wrapper.__doc__ = func.__doc__
+    wrapper.__name__ = func.__name__
     return wrapper
