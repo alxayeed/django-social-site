@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Images bookmarked{% endblock %}
+
+{% block content %}
+<h1>Images bookmarked</h1>
+<div id="image-list">
+    {% include "images/image/list_ajax.html" %}
+    <!-- images will be appended here via ajax request -->
+</div>
+{% endblock %}
+
+{% block domready %}
+<!-- current page number -->
+var page = 1;
+<!-- allows to know if user is on last page -->
+var empty_page = false;
+<!-- prevents sending repeated ajax request when one request is processing -->
+var block_request = false;
+<!-- to capture scroll event -->
+$(window).scroll(function() {
+<!-- finding out remaining margin to scroll -->
+var margin = $(document).height() - $(window).height() - 200;
+<!-- if the user is not on last page and no other ajax request is processing-->
+if($(window).scrollTop() > margin && empty_page == false &&
+block_request == false) {
+<!-- start processing this ajax request -->
+block_request = true;
+<!-- retrieve the next page -->
+page += 1;
+<!-- the AJAX request -->
+$.get('?page=' + page, function(data) {
+<!-- if there is no data, there is no more page to load. so set it empty page -->
+if(data == '') {
+empty_page = true;
+}
+<!-- if there are pages to load -->
+else {
+<!-- indicate that this process is done -->
+block_request = false;
+<!-- append all the data(images) to html elemend of class 'image-list' -->
+$('#image-list').append(data);
+}
+});
+}
+});
+{% endblock %}

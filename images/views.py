@@ -4,8 +4,9 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from .forms import ImageCreationForm
 from .models import Image
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from common.decorators import ajax_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 @login_required
@@ -61,3 +62,36 @@ def like_image(request):
         except:
             pass
     return JsonResponse({'status': 'error'})
+
+
+# view to list all bookmarked inages
+@login_required
+def image_list(request):
+    images = Image.objects.all()
+    # PAGINATOR
+    paginator = Paginator(images, 6)
+    page = request.GET.get('page')
+
+    try:
+        images = paginator.page(page)
+    except PageNotAnInteger:
+        # First page
+        images = paginator.page(1)
+    except EmptyPage:
+        # if page object is is out of range and
+        if request.is_ajax():
+            # if request is ajax, return empty page to stop ajax pagination on browser
+            return HttpResponse('')
+        # if page is out of range but request is not ajax, deliver last page
+        images = paginator.page(paginator.num_pages)
+
+    # if request is ajax, but not out of page, deliver ajax paginated list
+    if request.is_ajax():
+        return render(request,
+                      'images/image/list_ajax.html',
+                      {'section': 'images', 'images': images})
+
+    # if not ajax request, deliver standard paginated list
+    return render(request,
+                  'images/image/list.html',
+                  {'section': 'images', 'images': images})
