@@ -1,6 +1,7 @@
 # Django #
 *.pyc
 /__pycache__/
+/media
 
 
 # Credentials #
