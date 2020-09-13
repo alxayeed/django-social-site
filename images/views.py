@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import ImageCreationForm
+from .models import Image
 
 
 @login_required
@@ -16,7 +17,7 @@ def create_image(request):
             new_item.user = request.user
             # now save to db
             new_item.save()
-            messages.success(request, 'Image has benn sucessfully added')
+            messages.success(request, 'Image has been sucessfully added')
 
             # redirect to new created item detail view
             return redirect(new_item.get_absolute_url())
@@ -27,3 +28,10 @@ def create_image(request):
     return render(request, 'images/image/create.html',
                   {'section': 'images',
                    'form': form})
+
+
+def image_detail(request, id, slug):
+    image = get_object_or_404(Image, id=id, slug=slug)
+    return render(request, 'images/image/detail.html',
+                  {'section': 'images',
+                   'image': image})
