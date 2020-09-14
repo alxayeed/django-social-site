@@ -13,3 +13,7 @@ https://api.jquery.com/category/selectors/
 https://easy-thumbnails.readthedocs.io/
 https://docs.djangoproject.com/en/3.0/ref/csrf/#ajax
 https://www.python.org/dev/peps/pep-0318/ 
+
+14/9/2020
+--------------------
+https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#specifying-a-custom-user-model
