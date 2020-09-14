@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .forms import LoginForm, UserRegistrationForm, EditUserForm, EditProfileForm
 from .models import Profile
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 
 @login_required
@@ -87,3 +88,26 @@ def update_profile(request):
         profile_form = EditProfileForm(instance=request.user.profile)
 
     return render(request, 'account/update_profile.html', {'user_form': user_form, 'profile_form': profile_form})
+
+
+# show the user list
+@login_required
+def user_list(request):
+    # get all active user
+    users = User.objects.filter(is_active=True)
+    return render(request,
+                  'account/user/list.html',
+                  {'users': users,
+                   'section': 'people'})
+
+
+# show individual user information
+@login_required
+def user_details(request, username):
+    user = get_object_or_404(User,
+                             username=username,
+                             is_active=True)
+    return render(request,
+                  'account/user/detail.html',
+                  {'user': user,
+                   'section': 'people'})
