@@ -24,7 +24,6 @@
 </a>
 <div id="image-list" class="image-container">
     {% include 'images/image/list_ajax.html' with images=user.images_created.all %}
-    {{ user.username }}
 </div>
 {% endwith %}
 {% endblock content %}

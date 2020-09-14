@@ -33,6 +33,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('update-profile/', views.update_profile, name='update-profile'),
     path('users/', views.user_list, name='user_list'),
+    path('users/follow/', views.user_follow, name='user_follow'),
     path('users/<username>/', views.user_details, name='user_detail'),
 
 ]
