@@ -7,6 +7,7 @@ from .models import Image
 from django.http import JsonResponse, HttpResponse
 from common.decorators import ajax_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from actions.utils import create_action
 
 
 @login_required
@@ -21,6 +22,7 @@ def create_image(request):
             new_item.user = request.user
             # now save to db
             new_item.save()
+            create_action(request.user, 'bookmarked image', new_item)
             messages.success(request, 'Image has been sucessfully added')
 
             # redirect to new created item detail view
@@ -57,6 +59,7 @@ def like_image(request):
             else:
                 # removes if exists, does nothing otherwise
                 image.users_like.remove(request.user)
+                create_action(request.user, 'likes', image)
 
             return JsonResponse({'status': 'ok'})
         except:
