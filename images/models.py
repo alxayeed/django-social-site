@@ -22,6 +22,8 @@ class Image(models.Model):
     users_like = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                         related_name='images_liked',
                                         blank=True)
+    total_likes = models.PositiveIntegerField(db_index=True,
+                                              default=0)
 
     # overriding the save() mathod to auto-generate the slug field based on the value of title
     def save(self, *args, **kwargs):
