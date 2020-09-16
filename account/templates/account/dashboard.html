@@ -18,4 +18,13 @@ You can <a href="{% url "account:update-profile" %}">edit your profile</a>
 or <a href="{% url "account:change-password" %}">change your password</a>
 </p>
 
+<h1> What's happening </h1>
+
+<div id="action-list">
+    {% for action in actions %}
+    {% include "actions/action/detail.html" %}
+    {% endfor %}
+</div>
+
+
 {% endblock content %}
