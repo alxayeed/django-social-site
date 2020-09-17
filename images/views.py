@@ -46,7 +46,19 @@ def create_image(request):
 def image_detail(request, id, slug):
     image = get_object_or_404(Image, id=id, slug=slug)
     # increment total view by 1 each time this view is called(page refreshed)
-    total_views = r.incr(f'image:{image.id}:views')
+    redis_key = f'image:{image.id}:views'
+    # object-type:id:field
+    # incr() creates a key named 'views' for the image.id object
+    # it creates 'views',because views is not an attribute of Image
+    # if there was an attribute named 'views', that value would be incremented
+    # it then increments the value of view,default is by 1
+    total_views = r.incr(redis_key)
+
+    # zincrby(name, amount, value)
+    # increment the score of value(image.id) by amount(1) in a sorted set/dictionary, name(image_ranking)
+    # image_rangking stores the value as image:rangking pair
+    x = r.zincrby('image_ranking', 1, image.id)
+    print(x)
     return render(request, 'images/image/detail.html',
                   {'section': 'images',
                    'image': image,
@@ -108,3 +120,26 @@ def image_list(request):
     return render(request,
                   'images/image/list.html',
                   {'section': 'images', 'images': images})
+
+
+#
+@login_required
+def image_ranking(request):
+    # getting image:ranking(image_ranking) dictionary
+    # zrange(name, start, end, desc)
+    # raturn a range of value from the sorted set image_ranking, between start and end
+    # -1 means end of the range
+    image_ranking = r.zrange('image_ranking', 0, -1,
+                             desc=True)[:10]
+    print(image_ranking)
+    image_ranking_ids = [int(id) for id in image_ranking]
+    print(image_ranking_ids)
+    # get most viewed images
+    most_viewed = list(Image.objects.filter(id__in=image_ranking_ids))
+    print(most_viewed)
+    most_viewed.sort(key=lambda x: image_ranking_ids.index(x.id))
+    print(most_viewed)
+    return render(request,
+                  'images/image/ranking.html',
+                  {'section': 'images',
+                   'most_viewed': most_viewed})

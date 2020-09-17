@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %} Image Top chart {% endblock title %}
+
+{% block content %}
+<h1>Image Topchart</h1>
+<ol>
+    {% for image in most_viewed %}
+    <li>
+        <a href=" {{ image.get_absolute_url }}"> {{ image.title }}</a>
+    </li>
+    {% endfor %}
+</ol>
+{% endblock content %}
