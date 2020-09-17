@@ -8,6 +8,13 @@ from django.http import JsonResponse, HttpResponse
 from common.decorators import ajax_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from actions.utils import create_action
+import redis
+from django.conf import settings
+
+# connecting to redis database
+r = redis.Redis(host=settings.REDIS_HOST,
+                port=settings.REDIS_PORT,
+                db=settings.REDIS_DB)
 
 
 @login_required
